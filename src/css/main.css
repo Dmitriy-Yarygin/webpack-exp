@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Black+Han+Sans');
+
+span {
+  background: violet;
+  font-family: 'Black Han Sans', sans-serif;
+}
+
+input[type="text"]::placeholder {
+  color: black;
+}
