@@ -1,9 +1,13 @@
-import _ from "lodash";
-
-import unicorn from "./images/unicorn.jpg";
-
 import "./scss/main.scss";
 import "./css/main.css";
+
+function makeDiv(descr, value) {
+  return `<div class="record">
+            <span class="record-text">${descr}</span>    
+            <span class="record-value">${value}</span>
+            <span class="record-percentage"></span>
+          </div>`;
+}
 
 class Budget {
   constructor(name) {
@@ -17,6 +21,7 @@ class Budget {
       ["transport", -100]
     ];
   }
+
   addRec(descr, value) {
     let parent = document.querySelector(".balance-half.expenses");
     if (value > 0) {
@@ -26,8 +31,9 @@ class Budget {
       this.totalExpenses += value;
     }
     this.budget.push([descr, value]);
-    parent.appendChild(makeDiv(descr, value));
+    parent.insertAdjacentHTML("beforeend", makeDiv(descr, value));
   }
+
   render() {
     this.budget.forEach(([descr, value]) => {
       this.addRec(descr, value);
@@ -35,6 +41,7 @@ class Budget {
     this.budgetHeadRefresh();
     this.percentageRefresh();
   }
+
   budgetHeadRefresh() {
     document.getElementById("totalIncome").innerText = this.totalIncome.toFixed(
       2
@@ -42,43 +49,41 @@ class Budget {
     document.getElementById(
       "totalExpenses"
     ).innerText = this.totalExpenses.toFixed(2);
-    let total = this.totalIncome + this.totalExpenses;
+    const total = this.totalIncome + this.totalExpenses;
     document.getElementById("totalBalance").innerText = total.toFixed(2);
-    let percentage =
-      ((this.totalExpenses / this.totalIncome) * 100).toFixed(0) + "%";
-    document.getElementById("totalIncomePercentage").innerHTML = percentage;
+    const percentage = ((this.totalExpenses / this.totalIncome) * 100).toFixed(
+      0
+    );
+    document.getElementById(
+      "totalIncomePercentage"
+    ).innerHTML = `${percentage}%`;
   }
+
   percentageRefresh() {
-    let valueElements = document.querySelectorAll(
+    const valueElements = document.querySelectorAll(
       ".balance-half.expenses .record-value"
     );
-    let percentageElements = document.querySelectorAll(
+    const percentageElements = document.querySelectorAll(
       ".balance-half.expenses .record-percentage"
     );
-    for (let i = 0; i < valueElements.length; i++) {
-      let value = +valueElements[i].innerText;
-      let percentageSpan = percentageElements[i];
-      percentageSpan.innerText =
-        ((value / this.totalIncome) * 100).toFixed(0) + "%";
+    for (let i = 0; i < valueElements.length; i += 1) {
+      const value = +valueElements[i].innerText;
+      const percentageSpan = percentageElements[i];
+      percentageSpan.innerText = `${((value / this.totalIncome) * 100).toFixed(
+        0
+      )}%`;
     }
   }
 }
-function makeDiv(descr, value) {
-  let newDiv = document.createElement("div");
-  newDiv.className = "record";
-  newDiv.innerHTML = `<span class="record-text">${descr}</span>    
-                      <span class="record-value">${value}</span>
-                      <span class="record-percentage">0%</span>`;
-  return newDiv;
-}
 
-let myBudget = new Budget("Trainee`s budget");
+const myBudget = new Budget("Trainee`s budget");
 myBudget.render();
 
 document.getElementById("btnSaveIncome").addEventListener("click", addNewRec);
 document.getElementById("btnSaveExpense").addEventListener("click", addNewRec);
+
 function addNewRec(event) {
-  let descr = document.getElementById("newRecDescr").value;
+  const descr = document.getElementById("newRecDescr").value;
   let value = +document.getElementById("newRecValue").value;
   if (descr === "" || value === "") {
     alert("Enter description and value");
