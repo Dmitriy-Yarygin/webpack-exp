@@ -1,19 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="<%=htmlWebpackPlugin.files.chunks.main.css %>"
+    />
+    <title>Budget-tracker </title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.main.css %>">
-  <title>Title</title>
-</head>
-
-<body>
-  <div>^_^</div>
-  <span>()_()</span>
-  <input type="text" placeholder="Say my name">
-  <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
-</body>
-
+  <body>
+    <div class="wrapper">
+      <div class="budget">
+        <div class="container">
+          <span class="budget-description"
+            >Available budget in December 2018:</span
+          >
+          <span class="budget-value" id="totalBalance">+480.00</span>
+          <div class="record budget-income">
+            <span class="record-text">INCOME</span>
+            <span class="record-value" id="totalIncome"></span>
+            <span class="record-percentage"></span>
+          </div>
+          <div class="record budget-expenses">
+            <span class="record-text">EXPENSES</span>
+            <span class="record-value" id="totalExpenses"></span>
+            <span class="record-percentage" id="totalIncomePercentage">0</span>
+          </div>
+        </div>
+      </div>
+      <div class="newRecord">
+        <div class="container">
+          <input
+            class="newRecord-description"
+            id="newRecDescr"
+            type="text"
+            placeholder="Add description"
+          />
+          <input
+            class="newRecord-value"
+            id="newRecValue"
+            type="number"
+            min="0"
+            max="1000000"
+            placeholder="Value"
+          />
+          <div class="newRecord-btnGroup">
+            <button class="records-input-btnSaveIncome" id="btnSaveIncome">
+              Save as income
+            </button>
+            <button class="records-input-btnSaveExpense" id="btnSaveExpense">
+              Save as expense
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="balance">
+        <div class="container">
+          <div class="balance-half income"><h2>INCOME</h2></div>
+          <div class="balance-half expenses"><h2>EXPENSES</h2></div>
+        </div>
+      </div>
+    </div>
+    <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
+  </body>
 </html>

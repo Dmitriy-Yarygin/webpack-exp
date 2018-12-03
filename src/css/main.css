@@ -1,10 +1,128 @@
 @import url('https://fonts.googleapis.com/css?family=Black+Han+Sans');
-
-span {
-  background: violet;
-  font-family: 'Black Han Sans', sans-serif;
+.wrapper {
+  height: 100%;
+}
+.container {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1000px;
+  padding: 10px 0;
+}
+.budget {
+  padding: 2em;
+  background-color: #bed89c;
+}
+.budget > .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.budget-description {
+  margin-bottom: 1em;
+  font-size: 200%;
+  text-align: center;
+  color: white;
+}
+.budget-value {
+  margin-bottom: 1em;
+  font-size: 200%;
+  color: white;
+}
+.record.budget-income .record-percentage {
+  visibility: hidden;
+}
+.record {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 300px;
+  width: 45%;
+  margin: 2px;
+  padding: 5px;
+}
+.record-text {
+  flex-grow: 1;
+}
+.record-value {
+  margin-right: 1em;
+}
+.record-percentage {
+  width: 3em;
+  text-align: center;
+  font-size: 80%;
+  border-radius: 5px;
+  background-color: #d08888;
+}
+.budget-income {
+  background-color: #5375d6;
+}
+.budget-expenses {
+  background-color: #bd6262;
+}
+.newRecord {
+  border: 5px solid #bed89c;
+}
+.newRecord > .container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.newRecord > .container > * {
+  margin: 1em;
+}
+.newRecord-description {
+  flex-grow: 1;
+  min-width: 300px;
+  padding: 1em;
+}
+.newRecord-value {
+  flex-grow: 1;
+  min-width: 100px;
+  padding: 1em;
+}
+.newRecord-btnGroup {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+.newRecord-btnGroup > * {
+  margin: 0 1em;
+  width: 12em;
+  height: 3em;
+  border: 2px solid green;
+  border-radius: 5px;
+  background-color: #bed89c;
+}
+.newRecord-btnGroup > *:hover {
+  background-color: #346e24;
+}
+.balance {
+  border: 2px solid red;
+  /*   height: 50hv; */
+}
+.balance > .container {
+  border: 2px dotted green;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
+}
+.balance-half {
+  flex-grow: 1;
+  height: 100%;
+  border: 1px solid blue;
+}
+.balance-half .record {
+  width: 90%;
+  border: 1px solid #bed89c;
+}
+.balance-half.income .record-percentage {
+  visibility: hidden;
+}
+.balance-half.income > h2 {
+  color: #5375d6;
 }
 
-input[type="text"]::placeholder {
-  color: black;
+.balance-half.expenses > h2 {
+  color: #bd6262;
 }
